@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +70,79 @@ public class DBHelper {
         }
     }
     
+    public HashMap<String, Object> getRow( int rowId ) {
+        try {
+            String[] keys = {"id","name", "job", "age", "sex", "salary"};
+            ResultSet rs = st.executeQuery( "SELECT * FROM employes_table where id =" + rowId );
+            
+            String[]  employee = null; 
+            
+            for (int i = 0; i < 6  ; i++) {
+                employee[i] = rs.getString(keys[i]);
+                
+            }
+            System.out.println("| "+employee[0]+" | "+employee[1]+" | "+employee[2]+" | "+employee[3]+" | "+employee[4]+" | "+employee[5]+" |");
+            
+                
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
     
+    
+    public void printRow( int rowId ) {
+        try {
+            String[] keys = {"id","name", "job", "age", "sex", "salary"};
+            ResultSet rs = st.executeQuery( "SELECT * FROM employes_table where id =" + rowId );
+            
+            String[]  employee = {"","", "", "", "", ""}; 
+            rs.first();
+            
+            
+            for (int i = 0; i < 6  ; i++) {
+                employee[i] = rs.getString(keys[i]);
+                
+            }
+            System.out.println("| "+employee[0]+" | "+employee[1]+" | "+employee[2]+" | "+employee[3]+" | "+employee[4]+" | "+employee[5]+" |");
+            
+                
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
+    
+    public int insertRow( HashMap<String, Object> empl) {
+        int id = 0;
+        
+        
+        
+        return id;
+    }
+    
+    public int insertDefaultRow() {
+        int value = -1;
+        try {
+            
+            value = st.executeUpdate("INSERT INTO employes_table (name, job, age, sex, salary)  VALUES ('Victor', 'killer', 36, 1, 110);");
+            st.execute("DELETE FROM employes_table WHERE id = "+value);
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        System.out.println(value);
+        return value;
+    }
     
     
     
