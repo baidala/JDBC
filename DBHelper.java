@@ -177,4 +177,49 @@ public class DBHelper {
     }
     
     
+    
+    public int maxValueId() {
+        int value = -1;
+        
+        try {
+            ResultSet rs =  st.executeQuery("SELECT MAX(id) as max  FROM employes_table;");
+            rs.first();
+            
+            value = rs.getInt("max");
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return  value;
+    }
+    
+    
+    public void printTime(int id) {
+        
+        
+        try {
+            //ResultSet rs =  st.executeQuery("SELECT emp.name, tb.time_of_work FROM employes_table as emp INNER JOIN time_book as tb ON emp.id = tb.id;");
+            ResultSet rs =  st.executeQuery( "SELECT emp.name, tb.time_of_work FROM employes_table as emp INNER JOIN time_book as tb ON emp.id = tb.id WHERE emp.id =" + id );
+            rs.first();
+            
+            System.out.println(rs.getString("name") +"_"+ rs.getInt("time_of_work")); 
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
