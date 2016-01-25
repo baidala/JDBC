@@ -133,7 +133,7 @@ public class DBHelper {
         try {
             
             value = st.executeUpdate("INSERT INTO employes_table (name, job, age, sex, salary)  VALUES ('Victor', 'killer', 36, 1, 110);");
-            st.execute("DELETE FROM employes_table WHERE id = "+value);
+            //st.execute("DELETE FROM employes_table WHERE id = "+value);
                     
         } catch (SQLException ex) {
             Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,6 +144,37 @@ public class DBHelper {
         return value;
     }
     
+    
+    
+    public int deleteRow(int id) {
+        int value = -1;
+        try {
+            
+            value =  st.executeUpdate("DELETE FROM employes_table WHERE id = "+id);
+            //value =  st.executeUpdate("DELETE FROM employes_table");
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return  value;
+    }
+    
+    public int updateRow(int id) {
+        int value = -1;
+        try {
+            
+            value =  st.executeUpdate("UPDATE employes_table SET name = 'Anna' WHERE id = "+id);
+            //value =  st.executeUpdate("DELETE FROM employes_table");
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(DBHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return  value;
+    }
     
     
 }
