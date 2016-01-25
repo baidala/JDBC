@@ -23,6 +23,12 @@ public class Employee {
     }
        
     
+    Employee( int id ) {
+        this.id = id;
+        dataBase = new DBHelper();
+        
+    }
+    
     public void getFromDB( int id ) {
         dataBase.printRow(id);
         
@@ -32,5 +38,15 @@ public class Employee {
         dataBase.insertDefaultRow();
     }
     
+    public int delete() {
+        
+        return dataBase.deleteRow(this.id);
+    }
+    
+    
+    public int update() {
+        
+        return dataBase.updateRow(this.id);
+    }
     
 }
