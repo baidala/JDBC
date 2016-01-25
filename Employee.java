@@ -49,4 +49,12 @@ public class Employee {
         return dataBase.updateRow(this.id);
     }
     
+    public int maxId() {
+        return  dataBase.maxValueId();
+    }
+    
+    public void getTimeOfWork() {
+        dataBase.printTime(this.id);
+    }
+    
 }
